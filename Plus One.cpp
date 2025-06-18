@@ -1,27 +1,23 @@
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
+        vector<int> ans;
         int n = digits.size();
-        vector<int> answer;
-        int temp = 0;
         int carry = 0;
-
         for (int i=n-1; i>=0; i--)
         {
+            int tempSum = digits[i] + carry;
             if (i==n-1)
-            {
-                temp = digits[i] + 1;
-            }
-            else 
-            {
-                temp = digits[i] + carry;
-            }
-            answer.push_back(temp%10);
-            carry = temp / 10;
+                tempSum++;
+            if (tempSum >= 10)
+                carry = 1;
+            else
+                carry = 0;
+            ans.push_back(tempSum%10);
         }
         if (carry != 0)
-            answer.push_back(carry);
-        reverse(answer.begin(),answer.end());
-        return answer;
+            ans.push_back(carry);
+        reverse(ans.begin(), ans.end());
+        return ans;
     }
 };
